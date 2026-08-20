@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8" />
+  <title>Video Tarjimon — Sozlamalar</title>
+  <link rel="stylesheet" href="options.css" />
+</head>
+<body>
+<main>
+  <h1>Video Tarjimon — Sozlamalar</h1>
+  <p class="lede">Ingliz tilidagi videolarni o&#8216;zbek tiliga jonli tarjima qiladi va Elbek Mirzohidov ovozida eshittiradi.</p>
+
+  <section class="card">
+    <h2>1. Nutqni tanish (Deepgram)</h2>
+    <p class="hint">
+      Video ovozini inglizcha matnga aylantiradi.
+      <a href="https://console.deepgram.com/signup" target="_blank" rel="noreferrer">Deepgram konsolidan</a>
+      bepul kalit oling — ro&#8216;yxatdan o&#8216;tganda hisobga bepul kredit tushadi.
+    </p>
+    <label for="deepgramKey">API kaliti</label>
+    <input id="deepgramKey" type="password" autocomplete="off" spellcheck="false" placeholder="Deepgram API kaliti" />
+    <label class="inline"><input id="showKey" type="checkbox" /> Kalitni ko&#8216;rsatish</label>
+
+    <label for="deepgramModel">Model</label>
+    <select id="deepgramModel">
+      <option value="nova-3">nova-3 (eng aniq)</option>
+      <option value="nova-2">nova-2</option>
+      <option value="base">base (arzon)</option>
+    </select>
+  </section>
+
+  <section class="card">
+    <h2>2. Ovoz serveri</h2>
+    <p class="hint">
+      Elbek Mirzohidov ovozini shu lokal server yaratadi. Uni ishga tushirish uchun
+      loyihadagi <code>server/run.cmd</code> faylini oching va oyna ochiq qolsin.
+    </p>
+    <label for="ttsServerUrl">Server manzili</label>
+    <div class="with-button">
+      <input id="ttsServerUrl" type="url" spellcheck="false" placeholder="http://127.0.0.1:8788" />
+      <button id="testTts" type="button">Tekshirish</button>
+    </div>
+    <p id="ttsResult" class="result"></p>
+  </section>
+
+  <section class="card">
+    <h2>3. Tarjima</h2>
+    <label for="translateProvider">Provayder</label>
+    <select id="translateProvider">
+      <option value="google-free">Google (kalitsiz, bepul)</option>
+      <option value="google-cloud">Google Cloud Translation (kalit bilan)</option>
+    </select>
+    <p class="hint">Kalitsiz variant bepul, lekin juda ko&#8216;p so&#8216;rovda vaqtincha cheklanishi mumkin.</p>
+
+    <div id="cloudKeyWrap" hidden>
+      <label for="googleTranslateKey">Google Cloud API kaliti</label>
+      <input id="googleTranslateKey" type="password" autocomplete="off" spellcheck="false" />
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>4. Qo&#8216;shimcha</h2>
+
+    <label for="subtitleMode">Subtitr ko&#8216;rinishi</label>
+    <select id="subtitleMode">
+      <option value="both">O&#8216;zbekcha + inglizcha</option>
+      <option value="uz">Faqat o&#8216;zbekcha</option>
+    </select>
+
+    <div class="row">
+      <label for="duckFactor">Dublyaj gapirganda asl ovoz</label>
+      <output id="duckFactorOut">35%</output>
+    </div>
+    <input id="duckFactor" type="range" min="0" max="100" step="5" />
+    <p class="hint">Tarjima ovozi eshitilayotgan paytda videoning o&#8216;z ovozi shu darajaga tushadi.</p>
+
+    <div class="row">
+      <label for="maxLagSeconds">Ruxsat etilgan kechikish</label>
+      <output id="maxLagSecondsOut">3.0s</output>
+    </div>
+    <input id="maxLagSeconds" type="range" min="1" max="10" step="0.5" />
+    <p class="hint">Dublyaj shundan ko&#8216;p orqada qolsa, video biroz sekinlashadi va tarjima yetib oladi.</p>
+  </section>
+
+  <div class="actions">
+    <span id="saved" class="saved"></span>
+    <button id="reset" type="button" class="ghost">Standart holatga qaytarish</button>
+  </div>
+</main>
+<script type="module" src="options.js"></script>
+</body>
+</html>

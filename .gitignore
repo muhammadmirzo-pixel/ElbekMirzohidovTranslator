@@ -1,0 +1,12 @@
+# Python muhiti va yuklab olingan modellar (o'lchami katta, qayta yuklab olinadi)
+server/.venv/
+server/OpenVoice/
+server/checkpoints_v2/
+server/cache/
+server/server.log
+server/__pycache__/
+__pycache__/
+*.pyc
+
+# Yaratilgan namunalar
+samples/

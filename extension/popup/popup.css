@@ -1,0 +1,271 @@
+:root {
+  --bg: #14161c;
+  --panel: #1c1f27;
+  --line: #2b303b;
+  --fg: #e9ecf3;
+  --muted: #8b93a5;
+  --accent: #35c08a;
+  --accent-dim: #1f7a58;
+  --danger: #e0574c;
+  --warn: #d8a13a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  width: 320px;
+  background: var(--bg);
+  color: var(--fg);
+  font: 14px/1.45 "Segoe UI", system-ui, -apple-system, sans-serif;
+  padding: 14px;
+}
+
+/* ---- sarlavha ---- */
+
+.head { margin-bottom: 14px; }
+
+.brand { display: flex; align-items: center; gap: 11px; }
+
+h1 { font-size: 15px; margin: 0; font-weight: 650; letter-spacing: -0.01em; }
+
+.sub { margin: 1px 0 0; font-size: 11.5px; color: var(--muted); }
+
+/* Ovoz to'lqini — tarjima yoqilganda jonlanadi. */
+.wave {
+  display: flex;
+  align-items: center;
+  gap: 2.5px;
+  height: 30px;
+  width: 30px;
+  flex: none;
+}
+
+.wave i {
+  display: block;
+  width: 3px;
+  border-radius: 2px;
+  height: 7px;
+  background: var(--muted);
+  transition: background 0.25s;
+}
+
+body.on .wave i {
+  background: var(--accent);
+  animation: bounce 1s ease-in-out infinite;
+}
+
+.wave i:nth-child(1) { animation-delay: 0s; }
+.wave i:nth-child(2) { animation-delay: 0.12s; }
+.wave i:nth-child(3) { animation-delay: 0.24s; }
+.wave i:nth-child(4) { animation-delay: 0.36s; }
+.wave i:nth-child(5) { animation-delay: 0.48s; }
+
+@keyframes bounce {
+  0%, 100% { height: 6px; }
+  50% { height: 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.on .wave i { animation: none; height: 14px; }
+}
+
+/* ---- asosiy tugma ---- */
+
+.toggle {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--fg);
+  border-radius: 11px;
+  padding: 13px 14px;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.18s, border-color 0.18s;
+}
+
+.toggle:hover { border-color: #3a4150; }
+
+.toggle-label { font-size: 14.5px; font-weight: 600; }
+
+.toggle-hint { font-size: 11px; color: var(--muted); }
+
+body.on .toggle {
+  background: linear-gradient(180deg, #1e6b50, #17553f);
+  border-color: var(--accent-dim);
+}
+
+body.on .toggle-hint { color: #a8e2c8; }
+
+/* ---- boshqaruvlar ---- */
+
+.controls {
+  margin-top: 14px;
+  padding: 14px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 11px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.row label { font-size: 13px; font-weight: 500; }
+
+.row output {
+  font-size: 12px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.note {
+  margin: 3px 0 15px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.controls > .note:last-of-type { margin-bottom: 14px; }
+
+input[type="range"] {
+  width: 100%;
+  margin: 8px 0 0;
+  appearance: none;
+  height: 4px;
+  border-radius: 3px;
+  background: var(--line);
+  outline-offset: 4px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--fg);
+  cursor: pointer;
+  border: none;
+}
+
+body.on input[type="range"]::-webkit-slider-thumb { background: var(--accent); }
+
+/* ---- subtitr kalitchasi ---- */
+
+.switch-row {
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.switch { position: relative; display: inline-block; width: 38px; height: 21px; flex: none; }
+
+.switch input { opacity: 0; width: 0; height: 0; }
+
+.slider {
+  position: absolute;
+  inset: 0;
+  background: var(--line);
+  border-radius: 21px;
+  cursor: pointer;
+  transition: background 0.18s;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  left: 3px;
+  top: 3px;
+  background: var(--fg);
+  border-radius: 50%;
+  transition: transform 0.18s;
+}
+
+.switch input:checked + .slider { background: var(--accent-dim); }
+.switch input:checked + .slider::before { transform: translateX(17px); background: var(--accent); }
+.switch input:focus-visible + .slider { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ---- holat ---- */
+
+.status {
+  margin-top: 12px;
+  display: grid;
+  gap: 6px;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--muted);
+  flex: none;
+}
+
+.stat.ok .dot { background: var(--accent); }
+.stat.bad .dot { background: var(--danger); }
+.stat.warn .dot { background: var(--warn); }
+.stat.bad .txt, .stat.warn .txt { color: var(--fg); }
+
+/* ---- pastki qism ---- */
+
+footer { margin-top: 12px; text-align: center; }
+
+.link {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 4px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.link:hover { color: var(--fg); }
+
+/* ---- muammo yuzaga kelganda ko'rsatiladigan yechim ---- */
+
+.fix {
+  margin-top: 10px;
+  padding: 11px 12px;
+  background: #241f18;
+  border: 1px solid #4a3c22;
+  border-left: 3px solid var(--warn);
+  border-radius: 9px;
+}
+
+.fix p {
+  margin: 0 0 9px;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.fix button {
+  width: 100%;
+  background: #2e2820;
+  border: 1px solid #4a3c22;
+  color: var(--fg);
+  border-radius: 7px;
+  padding: 7px 12px;
+  font: inherit;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+.fix button:hover { border-color: var(--warn); }

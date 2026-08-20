@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header class="head">
+    <div class="brand">
+      <div class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <div>
+        <h1>Video Tarjimon</h1>
+        <p class="sub">Elbek Mirzohidov ovozida</p>
+      </div>
+    </div>
+  </header>
+
+  <button id="toggle" class="toggle" type="button" aria-pressed="false">
+    <span class="toggle-label">Tarjimani boshlash</span>
+    <span class="toggle-hint">Ingliz &rarr; O&#8216;zbek</span>
+  </button>
+
+  <section class="controls">
+    <div class="row">
+      <label for="dubVolume">Ovoz balandligi</label>
+      <output id="dubVolumeOut">100%</output>
+    </div>
+    <input id="dubVolume" type="range" min="0" max="100" step="1" />
+    <p class="note">Tarjima ovozi</p>
+
+    <div class="row">
+      <label for="originalVolume">Asl balandlik</label>
+      <output id="originalVolumeOut">15%</output>
+    </div>
+    <input id="originalVolume" type="range" min="0" max="100" step="1" />
+    <p class="note">Videoning o&#8216;z ovozi</p>
+
+    <div class="row switch-row">
+      <label for="showSubtitles">Subtitrni ko&#8216;rsatish</label>
+      <label class="switch">
+        <input id="showSubtitles" type="checkbox" />
+        <span class="slider" aria-hidden="true"></span>
+      </label>
+    </div>
+  </section>
+
+  <section class="status" id="status">
+    <div class="stat" id="statTts"><span class="dot"></span><span class="txt">Ovoz serveri tekshirilmoqda&hellip;</span></div>
+    <div class="stat" id="statKey"><span class="dot"></span><span class="txt">Deepgram kaliti</span></div>
+    <div class="stat" id="statPage"><span class="dot"></span><span class="txt">Sahifa tekshirilmoqda&hellip;</span></div>
+  </section>
+
+  <div id="fixWrap" class="fix" hidden>
+    <p id="fixText"></p>
+    <button id="reloadTab" type="button">Sahifani yangilash</button>
+  </div>
+
+  <footer>
+    <button id="openOptions" class="link" type="button">Sozlamalar</button>
+  </footer>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
